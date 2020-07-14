@@ -39,7 +39,7 @@ namespace CSG
 			public Face face;
 		};
 
-		public struct OperationInfo
+		internal struct OperationInfo
 		{
 			// 
 			public BspNode leafNode;
@@ -62,7 +62,7 @@ namespace CSG
 
 		private List<DeferredFace> deferredFaces;
 
-		public CsgOperation(CsgVisitor inVisitor)
+		internal CsgOperation(CsgVisitor inVisitor)
 		{
 			// 
 			csgVisitor = inVisitor;

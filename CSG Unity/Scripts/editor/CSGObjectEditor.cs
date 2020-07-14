@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 
@@ -25,7 +26,9 @@ namespace CSG
                     ++i;
                 }
 
-                obj.PerformCSG(CsgOperation.ECsgOperation.CsgOper_Intersect, gos);
+                var gosCSG = gos.Select(Boolean.FromGameObjectToCSGObject).ToArray();
+
+                obj.PerformCSG(CsgOperation.ECsgOperation.CsgOper_Intersect, gosCSG);
             }
 
             if (GUILayout.Button("DeIntersect"))
@@ -39,8 +42,10 @@ namespace CSG
                     gos[i] = gameObj;
                     ++i;
                 }
+                
+                var gosCSG = gos.Select(Boolean.FromGameObjectToCSGObject).ToArray();
 
-                obj.PerformCSG(CsgOperation.ECsgOperation.CsgOper_DeIntersect, gos);
+                obj.PerformCSG(CsgOperation.ECsgOperation.CsgOper_DeIntersect, gosCSG);
             }
 
             GUILayout.Button("...");

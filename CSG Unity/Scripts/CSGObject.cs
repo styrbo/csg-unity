@@ -9,7 +9,7 @@ namespace CSG
 		public const int TexMode_Planar = 1;
 
 		// Variables
-		public BspNode rootNode; //!< 
+		[SerializeField] internal BspNode rootNode; //!< 
 		public List<Face> faces; //!< 
 		public int texMode; //!< 
 		public float globalTexOffsetU = 0.0f;
@@ -58,7 +58,7 @@ namespace CSG
 		/// <param name='inSlaves'>
 		/// In slaves.
 		/// </param>
-		public void PerformCSG(CsgOperation.ECsgOperation inOper, GameObject[] inSlaves)
+		public void PerformCSG(CsgOperation.ECsgOperation inOper, CSGObject[] inSlaves)
 		{
 			// 
 			CreateFromMesh();
@@ -71,15 +71,13 @@ namespace CSG
 			List<Face> savedFaces = new List<Face>();
 
 			// 
-			foreach (GameObject g in inSlaves)
+			foreach (var slave in inSlaves)
 			{
-				CSGObject slave = g.GetComponent<CSGObject>();
-
 				// if we have a csg object and we are not our self
 				// and intersecting
-				if (slave && g != gameObject && intersect(slave))
+				if (slave && slave.gameObject != gameObject && intersect(slave))
 				{
-					Debug.Log(g.name);
+					Debug.Log(slave.gameObject.name);
 
 					// 
 					slave.CreateFromMesh();

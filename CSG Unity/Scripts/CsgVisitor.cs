@@ -1,6 +1,6 @@
 namespace CSG
-{
-    public interface CsgVisitor
+{ 
+    interface CsgVisitor
     {
         // Will be called for Master Faces on Slave BSP Tree
         void ProcessMaster(CsgOperation inOperation, Face inFace, CsgOperation.EPolySide inSide,
