@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSG
 {
-	class BspGen
+	public class BspGen
 	{
 
 		public const int BspOptm_Worse = 0;

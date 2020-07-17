@@ -1,6 +1,6 @@
 namespace CSG
 {
-	abstract class BrushBuilder
+	public abstract class BrushBuilder
 	{
 
 		// Use this for initialization

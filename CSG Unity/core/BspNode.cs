@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CSG
 {
-	class BspNode
+	public class BspNode
 	{
 
 		public const int BspFlags_IsDestroyed = 0x00000001;

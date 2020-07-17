@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace CSG
 {
-	class CubeBuilder : BrushBuilder
+	public class CubeBuilder : BrushBuilder
 	{
 
 		public static Material sharedMaterial;

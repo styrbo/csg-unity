@@ -9,7 +9,7 @@ namespace CSG
 		public const int TexMode_Planar = 1;
 
 		// Variables
-		[SerializeField] internal BspNode rootNode; //!< 
+		[SerializeField] public BspNode rootNode; //!< 
 		public List<Face> faces; //!< 
 		public int texMode; //!< 
 		public float globalTexOffsetU = 0.0f;

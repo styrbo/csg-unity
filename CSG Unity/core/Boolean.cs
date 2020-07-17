@@ -12,21 +12,21 @@ namespace CSG
         public static void Union(GameObject from, params GameObject[] to)
         {
             FromGameObjectToCSGObject(from, to, out CSGObject csgForm, out CSGObject[] csgTo);
-            
+
             Union(csgForm, csgTo);
         }
 
         public static void Union(CSGObject from, params CSGObject[] to)
         {
             from.PerformCSG(CsgOperation.ECsgOperation.CsgOper_Additive, to);
-            
+
             BooleanSettings.DestroySlaves(to);
         }
 
         public static void Subtract(GameObject from, params GameObject[] to)
         {
             FromGameObjectToCSGObject(from, to, out CSGObject csgForm, out CSGObject[] csgTo);
-            
+
             Subtract(csgForm, csgTo);
         }
 
@@ -37,33 +37,35 @@ namespace CSG
             BooleanSettings.DestroySlaves(to);
         }
 
-        static void FromGameObjectToCSGObject(GameObject from, GameObject[] to, out CSGObject csgForm, out CSGObject[] csgTo)
+        public static void FromGameObjectToCSGObject(GameObject from, GameObject[] to, out CSGObject csgForm,
+            out CSGObject[] csgTo)
         {
             csgForm = from.GetComponent<CSGObject>();
             csgTo = new CSGObject[to.Length];
-            
+
             if (!csgForm)
                 csgForm = AddComponent(from);
 
             for (var i = 0; i < to.Length; i++)
             {
                 var temp = to[i].GetComponent<CSGObject>();
-                
+
                 if (!temp)
                     csgTo[i] = AddComponent(to[i]);
             }
         }
-        internal static CSGObject FromGameObjectToCSGObject(GameObject from)
+
+        public static CSGObject FromGameObjectToCSGObject(GameObject from)
         {
             var to = from.GetComponent<CSGObject>();
 
             if (!to)
                 to = AddComponent(from);
-            
+
             return to;
         }
-        
-        internal static CSGObject AddComponent(GameObject obj)
+
+        public static CSGObject AddComponent(GameObject obj)
         {
             Mesh mesh = obj.GetComponent<MeshFilter>() != null ? obj.GetComponent<MeshFilter>().sharedMesh : null;
 
@@ -86,6 +88,5 @@ namespace CSG
                 return null;
             }
         }
-        
     }
 }
